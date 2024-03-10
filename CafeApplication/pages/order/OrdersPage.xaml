@@ -47,6 +47,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
+        
         <Grid Grid.Row="2" >
             <Button HorizontalAlignment="Left"  VerticalAlignment="Center" FontSize="18"  Foreground="White" BorderBrush="#FFFF4C4C" BorderThickness="1" Padding="8" Background="#FFFF4C4C" >
                 Удалить
