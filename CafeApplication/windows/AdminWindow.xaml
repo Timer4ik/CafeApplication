@@ -1,0 +1,48 @@
+﻿<Window x:Class="CafeApplication.windows.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CafeApplication.windows"
+        mc:Ignorable="d"
+        Title="AdminWindow" Height="850" Width="1000"
+        >
+    <DockPanel>
+
+        <Grid DockPanel.Dock="Top" Height="80" Background="{StaticResource akcent}">
+            <TextBlock Text="Магазин мебели"
+                       FontSize="24" Foreground="White"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+        </Grid>
+        <Grid DockPanel.Dock="Bottom" Height="40" Background="{StaticResource akcent}"/>
+
+        <StackPanel  DockPanel.Dock="Left" Width="250" Orientation="Vertical">
+            <Button  Margin="10" Name="EmployeeButton" Content="Сотрудники" Click="Button_Click_Employee"
+                    Background="{StaticResource akcent}" Foreground="White" 
+                    BorderBrush="White" Padding="15" FontSize="16" />
+            <Button  Margin="10" Name="OrdersButton" Content="Заказы" Click="Button_Click_Orders"
+                    Background="{StaticResource akcent}" Foreground="White" 
+                    BorderBrush="White"  Padding="15" FontSize="16" />
+            <Button  Margin="10" Name="ChangesButton" Content="Смены" Click="Button_Click_Changes"
+                    Background="{StaticResource akcent}" Foreground="White" 
+                    BorderBrush="White"  Padding="15" FontSize="16"/>
+            <Button Margin="10" Name="TablesButton" Content="Столики" Click="Button_Click_Tables"
+                    Background="{StaticResource akcent}" Foreground="White" 
+                    BorderBrush="White"  Padding="15" FontSize="16"/>
+            <Button Margin="10" Name="FoodsButton" Content="Продукты" Click="Button_Click_Foods"
+                    Background="{StaticResource akcent}" Foreground="White" 
+                    BorderBrush="White"  Padding="15" FontSize="16"/>
+
+            <Button Margin="10" Name="FoodCategoriesButton" Content="Категории продуктов" Click="Button_Click_FoodCategories"
+                    Background="{StaticResource akcent}" Foreground="White" 
+                    BorderBrush="White"  Padding="15" FontSize="16"/>
+            
+            <Button Margin="10" Name="BackButton" Content="Назад" Click="Button_Click_Back"
+                    Background="{StaticResource akcent}" Foreground="White" 
+                    BorderBrush="White"  Padding="15" FontSize="16" Visibility="Collapsed"/>
+
+        </StackPanel>
+        <Frame Name="MainFrame" DockPanel.Dock="Right" ContentRendered="MainFrame_ContentRendered" NavigationUIVisibility="Hidden"/>
+    </DockPanel>
+</Window>
