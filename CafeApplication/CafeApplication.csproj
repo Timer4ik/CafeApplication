@@ -106,7 +106,7 @@
     <Compile Include="pages\employee\EditOrAddEmployeePage.xaml.cs">
       <DependentUpon>EditOrAddEmployeePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\food\EditOrAddFoodCategoryPage.xaml.cs">
+    <Compile Include="pages\foodCategories\EditOrAddFoodCategoryPage.xaml.cs">
       <DependentUpon>EditOrAddFoodCategoryPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\food\EditOrAddFoodPage.xaml.cs">
@@ -125,7 +125,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="pages\food\FoodCategoriesPage.xaml.cs">
+    <Compile Include="pages\foodCategories\FoodCategoriesPage.xaml.cs">
       <DependentUpon>FoodCategoriesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\order\OrdersPage.xaml.cs">
@@ -170,7 +170,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="pages\food\EditOrAddFoodCategoryPage.xaml">
+    <Page Include="pages\foodCategories\EditOrAddFoodCategoryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -190,7 +190,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="pages\food\FoodCategoriesPage.xaml">
+    <Page Include="pages\foodCategories\FoodCategoriesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
