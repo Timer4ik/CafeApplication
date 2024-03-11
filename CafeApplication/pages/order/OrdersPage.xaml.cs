@@ -18,6 +18,7 @@ namespace CafeApplication.pages
 {
     public partial class OrdersPage : Page
     {
+        public DateTime SelectedDate { get; set; } = DateTime.Today;
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             try
@@ -35,7 +36,7 @@ namespace CafeApplication.pages
         {
             try
             {
-                OrderDataGrid.ItemsSource = CafeEntities.GetContext().Orders.ToList();
+                OrderDataGrid.ItemsSource = CafeEntities.GetContext().Orders.Where(item => item.Change.ChangeDate == SelectedDate).ToList();
             }
             catch (Exception ex)
             {
@@ -46,6 +47,8 @@ namespace CafeApplication.pages
         {
             InitializeComponent();
             FetchData();
+
+            DataContext = this;
         }
   
         private void AddOrder(object sender, RoutedEventArgs e)
@@ -58,6 +61,22 @@ namespace CafeApplication.pages
             Order order= (sender as Button).DataContext as Order;
 
             NavigationService.Navigate(new EditOrAddOrderPage(order));
+        }  
+        private void DeleteOrder(object sender, RoutedEventArgs e)
+        {
+            List<Order> orders = OrderDataGrid.SelectedItems.Cast<Order>().ToList();
+
+            if (orders.Count <= 0) return;
+            if (!ShowPopup.AreYouSure($"Вы точно хотите удалить {orders.Count} элементов")) return;
+
+            CafeEntities.GetContext().Orders.RemoveRange(orders);
+            CafeEntities.GetContext().SaveChanges();
+            FetchData();
+        }
+
+        private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            FetchData();
         }
     }
 }

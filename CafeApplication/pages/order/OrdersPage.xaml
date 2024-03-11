@@ -10,51 +10,69 @@
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition/>
+            <RowDefinition/>
             <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
-        <TextBlock VerticalAlignment="Center" FontSize="24" FontWeight="SemiBold">
-            Все заказы
-        </TextBlock>
+        <Calendar SelectedDate="{Binding SelectedDate}" SelectedDatesChanged="Calendar_SelectedDatesChanged" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" FontSize="18" Margin="20 0"/>
 
-        <DataGrid CanUserAddRows="False" Background="White"  Grid.Row="1" Name="OrderDataGrid" FontSize="18" AutoGenerateColumns="False" IsReadOnly="True">
-            <DataGrid.RowHeaderStyle>
-                <Style TargetType="DataGridRowHeader">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate />
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </DataGrid.RowHeaderStyle>
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Номер заказа" Binding="{Binding OrderId}"/>
-                <DataGridTextColumn Header="Номер столика" Binding="{Binding Table.Num}"/>
-                <DataGridTextColumn Header="Количество гостей" Binding="{Binding GuestsCount}"/>
-                <DataGridTextColumn Header="Дата смены" Binding="{Binding Change.ChangeDate}"/>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button FontSize="18" Click="EditOrder"  Foreground="White"
+        <Grid Grid.Column="1" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock VerticalAlignment="Center" FontSize="24" FontWeight="SemiBold">
+                Заказы
+            </TextBlock>
+
+            <DataGrid CanUserAddRows="False" Background="White"  Grid.Row="1" Name="OrderDataGrid" FontSize="18" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.RowHeaderStyle>
+                    <Style TargetType="DataGridRowHeader">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate />
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGrid.RowHeaderStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Номер заказа" Binding="{Binding OrderId}"/>
+                    <DataGridTextColumn Header="Номер столика" Binding="{Binding Table.Num}"/>
+                    <DataGridTextColumn Header="Количество гостей" Binding="{Binding GuestsCount}"/>
+                    <DataGridTextColumn Header="Дата смены" Binding="{Binding Change.ChangeDate}"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button FontSize="18" Click="EditOrder"  Foreground="White"
                                     BorderBrush="#FF295FCA" BorderThickness="1" Background="#FF295FCA" 
                                     Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" 
                                     VerticalAlignment="Center" Padding="20 10" Content="Редактировать"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
 
-        
-        <Grid Grid.Row="2" >
-            <Button HorizontalAlignment="Left"  VerticalAlignment="Center" FontSize="18"  Foreground="White" BorderBrush="#FFFF4C4C" BorderThickness="1" Padding="8" Background="#FFFF4C4C" >
-                Удалить
-            </Button>
-            <Button Click="AddOrder" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="18"  Foreground="White" BorderBrush="#FF295FCA" BorderThickness="1" Padding="8" Background="#FF295FCA" >
-                Добавить
-            </Button>
+
+            
         </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="1" Margin="10">
+            <Grid Grid.Row="2" >
+                <Button Click="DeleteOrder" HorizontalAlignment="Left"  VerticalAlignment="Center" FontSize="18"  Foreground="White" BorderBrush="#FFFF4C4C" BorderThickness="1" Padding="8" Background="#FFFF4C4C" >
+                    Удалить
+                </Button>
+                <Button Click="AddOrder" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="18"  Foreground="White" BorderBrush="#FF295FCA" BorderThickness="1" Padding="8" Background="#FF295FCA" >
+                    Добавить
+                </Button>
+            </Grid>
+        </Grid>
+       
     </Grid>
 </Page>

@@ -18,7 +18,7 @@ namespace CafeApplication.pages
 {
     public partial class ChangesPage : Page
     {
-        public System.DateTime SelectedDate { get; set; }
+        public System.DateTime SelectedDate { get; set; } = DateTime.Today;
         public User SelectedUser { get; set; }
         public List<User> Users { get; set; }
 
@@ -42,8 +42,7 @@ namespace CafeApplication.pages
             {
                 EmployeeDataGrid.ItemsSource = CafeEntities.GetContext().ChangeEmployees
                     .Where(item => item.Change.ChangeDate == SelectedDate)
-                    .ToList()
-                    .ConvertAll(i => i.User); ;
+                    .ToList();
 
                 Users = CafeEntities.GetContext().Users.ToList();
             }
@@ -86,6 +85,17 @@ namespace CafeApplication.pages
             FetchData();
         }
 
+        public void DeleteEmployee(object sender, RoutedEventArgs e)
+        {
+            List<ChangeEmployee> changeEmployees = EmployeeDataGrid.SelectedItems.Cast<ChangeEmployee>().ToList();
+
+            if (changeEmployees.Count <= 0) return;
+            if (!ShowPopup.AreYouSure($"Вы точно хотите удалить {changeEmployees.Count} элементов")) return;
+
+            CafeEntities.GetContext().ChangeEmployees.RemoveRange(changeEmployees);
+            CafeEntities.GetContext().SaveChanges();
+            FetchData();
+        }
         private void EditEmployee(object sender, RoutedEventArgs e)
         {
             User user = (sender as Button).DataContext as User;

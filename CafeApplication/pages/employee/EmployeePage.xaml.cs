@@ -53,6 +53,17 @@ namespace CafeApplication.pages
         {
             NavigationService.Navigate(new EditOrAddEmployeePage(null));
         }
+        private void DeleteEmployee(object sender, RoutedEventArgs e)
+        {
+            List<User> users = EmployeeDataGrid.SelectedItems.Cast<User>().ToList();
+
+            if (users.Count <= 0) return;
+            if (!ShowPopup.AreYouSure($"Вы точно хотите удалить {users.Count} элементов")) return;
+
+            CafeEntities.GetContext().Users.RemoveRange(users);
+            CafeEntities.GetContext().SaveChanges();
+            FetchData();
+        }
 
         private void EditEmployee(object sender, RoutedEventArgs e)
         {

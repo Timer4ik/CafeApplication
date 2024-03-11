@@ -21,9 +21,9 @@ namespace CafeApplication.utils
         {
             MessageBox.Show(message, caption, MessageBoxButton.OK, MessageBoxImage.Error);
         }
-        public static void AreYouSure(string message = "Вы уверены?", string caption = "Внимание")
+        public static bool AreYouSure(string message = "Вы уверены?", string caption = "Внимание")
         {
-            MessageBox.Show(message, caption, MessageBoxButton.YesNo, MessageBoxImage.Question);
+            return MessageBox.Show(message, caption, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes;
         }
         public static void InnerException(Exception ex)
         {

@@ -41,10 +41,10 @@
                     </Style>
                 </DataGrid.RowHeaderStyle>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Фио" Binding="{Binding FullName}"/>
-                    <DataGridTextColumn Header="E-mail" Binding="{Binding Email}"/>
-                    <DataGridTextColumn Header="Пароль" Binding="{Binding Password}"/>
-                    <DataGridTextColumn Header="Роль" Binding="{Binding Role.Name}"/>
+                    <DataGridTextColumn Header="Фио" Binding="{Binding User.FullName}"/>
+                    <DataGridTextColumn Header="E-mail" Binding="{Binding User.Email}"/>
+                    <DataGridTextColumn Header="Пароль" Binding="{Binding User.Password}"/>
+                    <DataGridTextColumn Header="Роль" Binding="{Binding User.Role.Name}"/>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -60,7 +60,7 @@
         </Grid>
 
         <Grid Grid.Row="2" Grid.Column="1" Margin="10">
-            <Button HorizontalAlignment="Left"  VerticalAlignment="Center" FontSize="18"  Foreground="White" BorderBrush="#FFFF4C4C" BorderThickness="1" Padding="8" Background="#FFFF4C4C" >
+            <Button Click="DeleteEmployee" HorizontalAlignment="Left"  VerticalAlignment="Center" FontSize="18"  Foreground="White" BorderBrush="#FFFF4C4C" BorderThickness="1" Padding="8" Background="#FFFF4C4C" >
                 Удалить
             </Button>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">

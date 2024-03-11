@@ -64,7 +64,14 @@ namespace CafeApplication.pages.table
 
         private void DeleteTable(object sender, RoutedEventArgs e)
         {
+            List<Table> tables= TablesDataGrid.SelectedItems.Cast<Table>().ToList();
 
+            if (tables.Count <= 0) return;
+            if (!ShowPopup.AreYouSure($"Вы точно хотите удалить {tables.Count} элементов")) return;
+
+            CafeEntities.GetContext().Tables.RemoveRange(tables);
+            CafeEntities.GetContext().SaveChanges();
+            FetchData();
         }
  
     }

@@ -64,7 +64,14 @@ namespace CafeApplication.pages.food
 
         private void DeleteFood(object sender, RoutedEventArgs e)
         {
+            List<Food> foods = FoodsDataGrid.SelectedItems.Cast<Food>().ToList();
 
+            if (foods.Count <= 0) return;
+            if (!ShowPopup.AreYouSure($"Вы точно хотите удалить {foods.Count} элементов")) return;
+
+            CafeEntities.GetContext().Foods.RemoveRange(foods);
+            CafeEntities.GetContext().SaveChanges();
+            FetchData();
         }
     }
 }
