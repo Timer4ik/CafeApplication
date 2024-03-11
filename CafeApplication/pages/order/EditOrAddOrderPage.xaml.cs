@@ -40,7 +40,8 @@ namespace CafeApplication.pages
             {
                 ChangeId = change.ChangeId,
             });
-            
+
+            OrderFoodsListBox.ItemsSource = Order.OrderFoods;
 
             this.DataContext = this;
         }
@@ -76,6 +77,10 @@ namespace CafeApplication.pages
 
             ShowPopup.Success("Заказ успешно изменён");
         }
+        private void OpenProductSelectWindow(object sender, RoutedEventArgs e)
+        {
+            
+        }
         private void SaveOrAddOrder(object sender, RoutedEventArgs e)
         {
             bool isValid = CheckIsValidAndShowMessage();
@@ -94,6 +99,16 @@ namespace CafeApplication.pages
                 ShowPopup.InnerException(error);
             }
 
+        }
+
+        private void RemoveProduct(object sender, RoutedEventArgs e)
+        {
+            OrderFood orderFood = (sender as Button).DataContext as OrderFood;
+
+            CafeEntities.GetContext().OrderFoods.Remove(orderFood);
+            CafeEntities.GetContext().SaveChanges();
+
+            OrderFoodsListBox.ItemsSource = CafeEntities.GetContext().OrderFoods.Where(o => o.OrderId == Order.OrderId).ToList();
         }
     }
 }

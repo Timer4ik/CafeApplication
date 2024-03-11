@@ -13,6 +13,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -21,13 +22,33 @@
 
         <TextBlock HorizontalAlignment="center" Grid.Row="0" Text="Номер столика" VerticalAlignment="Center" FontSize="18"/>
         <TextBlock HorizontalAlignment="center" Grid.Row="1" Text="Количество гостей" VerticalAlignment="Center" FontSize="18"/>
+        <Button Click="OpenProductSelectWindow" HorizontalAlignment="center" Grid.Row="2" Content="Добавить продукт" VerticalAlignment="Center" FontSize="18"/>
 
         <ComboBox ItemsSource="{Binding Tables}" DisplayMemberPath="Num" SelectedItem="{Binding Order.Table}"
                   Name="RoleComboBox" Grid.Row="0" Grid.Column="1" 
                   VerticalAlignment="Center" FontSize="18" Margin="20 0"/>
-        
+
         <TextBox Text="{Binding Order.GuestsCount}" Grid.Row="1" Grid.Column="1" 
                  VerticalAlignment="Center" FontSize="18" Margin="20 0"/>
+
+        <ListBox Name="OrderFoodsListBox" Grid.Row="2" Grid.Column="1">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Height="150">
+                        <StackPanel ScrollViewer.PanningMode="Both" Orientation="Vertical" VerticalAlignment="Top">
+                            <Image Height="100" Width="250" Stretch="UniformToFill" Source="{Binding Food.GetPhoto}"/>
+                            <TextBlock Width="250" TextWrapping="Wrap"  FontSize="14" FontWeight="Bold" Text="{Binding Food.Name}"/>
+                            <Button Click="RemoveProduct" Content="Удалить"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
         <Button FontSize="18" Click="SaveOrAddOrder"  Foreground="White" BorderBrush="#FF295FCA" BorderThickness="1" Background="#FF295FCA"  Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Center"   VerticalAlignment="Center" Padding="20 10" Content="Сохранить"/>
     </Grid>
